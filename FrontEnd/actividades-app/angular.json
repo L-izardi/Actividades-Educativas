@@ -64,7 +64,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "actividades-app:build",
-            "host": "192.168.0.25"
+            "host": "192.168.0.23"
           },
           "configurations": {
             "production": {
