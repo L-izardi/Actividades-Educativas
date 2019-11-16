@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .addFilterAfter(new OAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
         .addFilterAfter(myFilter(), OAuth2ClientContextFilter.class)
-        .httpBasic().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/google-login"))
+        .httpBasic().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
         .and()
         .authorizeRequests()
        // .antMatchers("/","/index*").permitAll()
