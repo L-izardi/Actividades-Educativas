@@ -19,7 +19,7 @@ import gt.com.actividades.utils.ResponseResult;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/departamento")
+@RequestMapping("/centro")
 public class TcCentroController {
 	
     private boolean showErrors;

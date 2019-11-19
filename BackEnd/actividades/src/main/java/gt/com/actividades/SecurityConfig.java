@@ -5,6 +5,7 @@ import gt.com.actividades.security.OpenIdConnectFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -43,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .httpBasic().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
         .and()
         .authorizeRequests()
+        .antMatchers(HttpMethod.POST, "/catedratico/all").permitAll()
        // .antMatchers("/","/index*").permitAll()
         .anyRequest().authenticated()
         ;
