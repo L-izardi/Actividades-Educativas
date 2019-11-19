@@ -35,7 +35,7 @@ public class TcCicloController {
     TcCicloRepository tcCicloRepository;
     
     @GetMapping("/all")
-	public ApiResponse getAllProduct() {
+	public ApiResponse getAllCiclo() {
 		try {
 			List<?> lista = tcCicloRepository.findAll();
 			apiResponse.setData(lista);
