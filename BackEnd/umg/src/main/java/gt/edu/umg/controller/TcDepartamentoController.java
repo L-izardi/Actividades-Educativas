@@ -40,7 +40,7 @@ public class TcDepartamentoController {
     TcDepartamentoRepository tcDepartamentoRepository;
 	
 	@PostMapping("/add")
-    public ApiResponse setCentro(@Valid @RequestBody TcDepartamento tcDepartamento) {
+    public ApiResponse setDepartamento(@Valid @RequestBody TcDepartamento tcDepartamento) {
         try {
             tcDepartamentoRepository.save(tcDepartamento);
             apiResponse.setStatus(ResponseResult.success.getValue());

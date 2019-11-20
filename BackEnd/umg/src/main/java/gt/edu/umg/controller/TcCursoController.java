@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import  gt.edu.umg.model.TcCiclo;
-import  gt.edu.umg.repository.TcCicloRepository;
+import  gt.edu.umg.model.TcCurso;
+import  gt.edu.umg.repository.TcCursoRepository;
 import  gt.edu.umg.payload.ApiResponse;
 import  gt.edu.umg.config.AppProperties;
 import  gt.edu.umg.payload.ResponseResult;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/ciclo")
-public class TcCicloController { 
+@RequestMapping("/curso")
+public class TcCursoController { 
 	
     private boolean showErrors;
     
@@ -32,16 +32,16 @@ public class TcCicloController {
     ApiResponse apiResponse = new ApiResponse();
 
     @Autowired
-    public TcCicloController(AppProperties properties) {
+    public TcCursoController(AppProperties properties) {
         this.showErrors = (properties.getShowErrors() == 1);
     }
     @Autowired
-    TcCicloRepository tcCicloRepository;
+    TcCursoRepository tcCursoRepository;
     
     @PostMapping("/add")
-    public ApiResponse setCiclo(@Valid @RequestBody TcCiclo tcCiclo) {
+    public ApiResponse setCurso(@Valid @RequestBody TcCurso tcCurso) {
         try {
-            tcCicloRepository.save(tcCiclo);
+            tcCursoRepository.save(tcCurso);
             apiResponse.setStatus(ResponseResult.success.getValue());
             apiResponse.setMessage(ResponseResult.success.getMessage());
         } catch (Exception e) {
@@ -56,9 +56,9 @@ public class TcCicloController {
     }
     
     @GetMapping("/all")
-	public ApiResponse getAllCiclo() {
+	public ApiResponse getAllCurso() {
 		try {
-			List<?> lista = tcCicloRepository.findAll();
+			List<?> lista = tcCursoRepository.findAll();
 			apiResponse.setData(lista);
 			apiResponse.setStatus(ResponseResult.success.getValue());
 			apiResponse.setMessage(ResponseResult.success.getMessage());
@@ -74,11 +74,11 @@ public class TcCicloController {
 	}
 
 
-    @GetMapping("/{idCiclo}")
-    public ApiResponse findById(@PathVariable(value = "idCiclo") Long idCiclo) {
+    @GetMapping("/{idCurso}")
+    public ApiResponse findById(@PathVariable(value = "idCurso") Long idCurso) {
         try {
-            Optional<TcCiclo> found = tcCicloRepository.findByIdCiclo(idCiclo);
-            List<TcCiclo> list = new ArrayList<>();
+            Optional<TcCurso> found = tcCursoRepository.findByIdCurso(idCurso);
+            List<TcCurso> list = new ArrayList<>();
             list.add(found.get());
             apiResponse.setData(list);
             apiResponse.setStatus(ResponseResult.success.getValue());
