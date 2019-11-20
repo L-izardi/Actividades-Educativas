@@ -105,6 +105,7 @@ public class TcCatedraticoController {
             list.add(found.get());
             apiResponse.setData(list);
             apiResponse.setStatus(ResponseResult.success.getValue());
+            apiResponse.setSuccess(true);
             apiResponse.setMessage(ResponseResult.success.getMessage());
         } catch (Exception e) {
             apiResponse.setStatus(ResponseResult.fail.getValue());
