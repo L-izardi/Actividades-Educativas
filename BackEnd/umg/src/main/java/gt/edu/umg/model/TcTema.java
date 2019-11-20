@@ -1,5 +1,8 @@
 package gt.edu.umg.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -31,6 +35,27 @@ public class TcTema{
     @JoinColumn(name = "idCorrelativo")
     private TcHeaders tcHeaders;
     
+    @Transient
+    private List<TcDetalle> detalle = new ArrayList<>();
+    
+    public List<TcDetalle> getDetalle(){
+        return this.detalle;
+    }
+    
+    public void setDetalle(List<TcDetalle> detalle){
+        this.detalle=detalle;
+    }
+
+    public void addDetalle(TcDetalle detalle){
+        this.detalle.add(detalle);
+        detalle.setTcTema(null);
+    }
+
+    public void removeDetalle(TcDetalle detalle){
+        this.detalle.remove(detalle);
+        detalle.setTcTema(null);
+    }
+
     public Long getIdTema() {
         return idTema;
     }
