@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,7 +25,12 @@ public class TcTema{
     @Column(length = 150)
     @NotNull
     private String estado;
-
+    
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "idCorrelativo")
+    private TcHeaders tcHeaders;
+    
     public Long getIdTema() {
         return idTema;
     }
@@ -46,6 +53,14 @@ public class TcTema{
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public TcHeaders getTcHeaders() {
+        return tcHeaders;
+    }
+
+    public void setTcHeaders(TcHeaders tcHeaders) {
+        this.tcHeaders = tcHeaders;
     }
 
        

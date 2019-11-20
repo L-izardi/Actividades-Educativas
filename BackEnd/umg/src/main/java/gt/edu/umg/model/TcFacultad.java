@@ -23,6 +23,7 @@ public class TcFacultad {
     private String nombre;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "idCentro")
     private TcCentro tc_centro;
 
