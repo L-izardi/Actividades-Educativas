@@ -6,5 +6,5 @@ export class TcCurso {
     public idCurso:number;
     public nombreCurso:String
     public idCiclo:TcCiclo;
-    public idFac:TcFacultad;
+    public idFacultad:TcFacultad;
 }
