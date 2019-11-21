@@ -6,11 +6,13 @@ import gt.edu.umg.model.User;
 import gt.edu.umg.payload.ApiResponse;
 import gt.edu.umg.payload.AuthResponse;
 import gt.edu.umg.payload.LoginRequest;
+import gt.edu.umg.payload.ResponseResult;
 import gt.edu.umg.payload.SignUpRequest;
 import gt.edu.umg.repository.UserRepository;
 import gt.edu.umg.security.TokenProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +24,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -40,6 +44,8 @@ public class AuthController {
     @Autowired
     private TokenProvider tokenProvider;
 
+    ApiResponse apiResponse = new ApiResponse();
+    
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -49,11 +55,22 @@ public class AuthController {
                         loginRequest.getPassword()
                 )
         );
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String token = tokenProvider.createToken(authentication);
-        return ResponseEntity.ok(new AuthResponse(token));
+
+        Optional<User> found = userRepository.findByEmail(loginRequest.getEmail());
+            
+            User user = found.get();
+            user.setPassword("");
+            List<User> list = new ArrayList<>();
+            list.add(user);
+            apiResponse.setData(list);
+            apiResponse.setSuccess(true);
+            apiResponse.setStatus(ResponseResult.success.getValue());
+            apiResponse.setMessage(ResponseResult.success.getMessage());
+            apiResponse.setSingleValue(token);
+            //apiResponse.setAuth(new AuthResponse(token));
+            return ResponseEntity.ok(new AuthResponse(token)).ok(apiResponse);
     }
 
     @PostMapping("/signup")
