@@ -9,6 +9,7 @@ public class ApiResponse {
     private String message;
     private List<?> data;
     private String singleValue;
+    private AuthResponse authResponse;
 
     public ApiResponse(){
 
@@ -57,6 +58,13 @@ public class ApiResponse {
 
     public void setSingleValue(String singleValue) {
         this.singleValue = singleValue;
+    }
+
+	public void setAuth(AuthResponse authResponse) {
+        this.authResponse=authResponse;
+    }
+    public AuthResponse getAuth(){
+        return authResponse;
     }
 
    
