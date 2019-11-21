@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Config } from './config';
-import { TcCurso } from '../model/tc-curso';
+import { TcCentro } from '../model/tc-centro';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +17,10 @@ export class TcCentroService {
     this.url = Config.apiUrl;
    }
 
-   addCentro (data: TcCurso){
+   addCentro (data: TcCentro){
      return this.http.post(this.url + 'centro/add', data);
    }
-   updateCentro(data: TcCurso,id:number){
+   updateCentro(data: TcCentro,id:number){
      return this.http.put(this.url + 'centro/'+id, data);
    }
    getCentrosAll(){
