@@ -18,15 +18,16 @@ export class TcFacultadService {
    }
 
   addFacultad(data:TcFacultad){
-    return this.http.post(this.url + '/api/Facultads/', data);
+    return this.http.post(this.url + 'facultad/', data);
   }
   updateFacultad(data:TcFacultad, id:number){
-    return this.http.put(this.url +'/api/Facultads/'+ id, data);
+    return this.http.put(this.url +'facultad/'+ id, data);
+  }  
+  getFacultadesAll(){
+    return this.http.get(this.url + 'facultad/all');
   }
   getFacultad(id:number){
-    return this.http.get(this.url + '/api/Facultads/'+ id );
+    return this.http.get(this.url + 'facultad/'+ id );
   }
-  getFacultades(){
-    return this.http.get(this.url + '/api/Facultads');
-  }
+
 }

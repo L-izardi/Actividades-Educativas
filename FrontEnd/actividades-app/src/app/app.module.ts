@@ -1,38 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { AuthorizatedGuard } from './guard/authorizated.guard';
+import { StorageService } from './service/storage.service';
+import { DatePipe } from '@angular/common';
+import { AuthInterceptorService } from './service/auth-interceptor.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule,
-    SocialLoginModule
+    NgbModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right'
+    }),
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
-  providers: [ {
-    provide: AuthServiceConfig,
-    useFactory: provideConfig
-  }],
+  providers: [
+    AuthorizatedGuard,
+    StorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi : true
+    }, 
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }
-
-const config = new AuthServiceConfig([
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('783852312134451')
-  }
-]);
-
-export function provideConfig() {
-  return config;
-}
-
-

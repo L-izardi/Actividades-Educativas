@@ -18,16 +18,13 @@ export class TcDepartamentoService {
    }
   
    addDepartamento(data: TcDepartamento){
-     return this.http.post(this.url +'/api/Departamentoes/',data);
+     return this.http.post(this.url +'departamento/add',data);
    }
-   updateDepartamento(data: TcDepartamento, id:number){
-     return this.http.put(this.url + '/api/Departamentoes/ ' +id, data );
-    }
    getDepartamentoAll(){
-    return this.http.get(this.url + 'api/Departamentoes');
+    return this.http.get(this.url + 'departamento/all');
     }
    getDepartamento( id: number){
-      return this.http.get(this.url + 'api/Departamentoes/'+ id);
+      return this.http.get(this.url + 'departamento/'+ id);
     }
 
 }

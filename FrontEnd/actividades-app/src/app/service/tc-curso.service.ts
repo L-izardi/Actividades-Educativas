@@ -18,15 +18,15 @@ export class TcCursoService {
    }
 
   addCurso(data:TcCurso){
-    return this.http.post(this.url + '/api/Cursoes/', data);
+    return this.http.post(this.url + 'curso/add', data);
   }
   updateCurso(data:TcCurso, id:number){
-    return this.http.put(this.url +'/api/Cursoes/'+ id, data);
+    return this.http.put(this.url + 'curso/'+ id, data);
+  }
+  getCursosAll(){
+    return this.http.get(this.url + 'curso/all');
   }
   getCurso(id:number){
-    return this.http.get(this.url + '/api/Centroes/'+ id );
-  }
-  getCursos(){
-    return this.http.get(this.url + '/api/Centroes');
-  }
+    return this.http.get(this.url + 'curso/'+ id );
+  }   
 }

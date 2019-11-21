@@ -18,16 +18,16 @@ export class TcCentroService {
    }
 
    addCentro (data: TcCurso){
-     return this.http.post(this.url + 'api/Centroes', data);
+     return this.http.post(this.url + 'centro/add', data);
    }
    updateCentro(data: TcCurso,id:number){
-     return this.http.put(this.url + 'api/Centroes/'+id, data);
+     return this.http.put(this.url + 'centro/'+id, data);
    }
    getCentrosAll(){
-    return this.http.get(this.url + 'api/Centroes');
+    return this.http.get(this.url + 'centro/all');
   }
    getCentros( id: number){
-      return this.http.get(this.url + 'api/Centroes/'+ id);
+      return this.http.get(this.url + 'centro/'+ id);
    }
 
 }
