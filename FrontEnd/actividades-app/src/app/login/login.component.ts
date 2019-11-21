@@ -59,9 +59,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log(this.user)
     this.loginService.login(this.user).subscribe (
       Response => {
         this.response = Response;
+        console.log(this.response);
         if (this.response.status === 'ok') {
           let token = this.response.singleValue;
           let tcUser = this.response.data[0];
@@ -80,7 +82,6 @@ export class LoginComponent implements OnInit {
       error => {
         this.toastr.error('Status: ' + error.error.status + ' Error: ' + error.error.error + ' Message: ' + error.error.message);
       }
-    );
-  }
+    );   }
 
 }
