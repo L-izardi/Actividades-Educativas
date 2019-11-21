@@ -119,7 +119,7 @@ public class TcTemaController {
         return apiResponse;
     }
     @GetMapping("/{idTema}")
-	public ApiResponse getOrder(@PathVariable(value = "idTema") Long idTema) {
+	public ApiResponse getTema(@PathVariable(value = "idTema") Long idTema) {
 		try {
             Optional<TcTema> item = tcTemaRepository.findById(idTema);
             TcTema tema = item.get();
@@ -143,6 +143,42 @@ public class TcTemaController {
 			}
 		}
 		return apiResponse;
+    }
+    @GetMapping("/detalle/{idCorrelativo}")
+	public ApiResponse getDetalle(@PathVariable(value = "idCorrelativo") Long idCorrelativo) {
+		try {
+            Optional<TcDetalle> found = tcDetalleRepository.findById(idCorrelativo);            
+            List<TcDetalle> lista = new ArrayList<>();
+            lista.add(found.get());
+            apiResponse.setData(lista);
+            apiResponse.setStatus(ResponseResult.success.getValue());
+            apiResponse.setMessage("Se obtuvo el  tema");
+        
+		} catch (Exception e) {
+			apiResponse.setStatus(ResponseResult.fail.getValue());
+			if (showErrors) {
+				apiResponse.setMessage(e.getMessage());
+			} else {
+				apiResponse.setMessage(ResponseResult.fail.getMessage());
+			}
+		}
+		return apiResponse;
 	}
-
+    @GetMapping("/all")
+	public ApiResponse getAllTema() {
+		try {
+			List<?> lista = tcTemaRepository.findAll();
+			apiResponse.setData(lista);
+			apiResponse.setStatus(ResponseResult.success.getValue());
+			apiResponse.setMessage(ResponseResult.success.getMessage());
+		} catch (Exception e) {
+			apiResponse.setStatus(ResponseResult.fail.getValue());
+			if (this.showErrors) {
+				apiResponse.setMessage(e.getMessage());
+			} else {
+				apiResponse.setMessage(ResponseResult.fail.getMessage());
+			}
+		}
+		return apiResponse;
+	}
 }
