@@ -20,9 +20,6 @@ export class TcCursoService {
   addCurso(data:TcCurso){
     return this.http.post(this.url + 'curso/add', data);
   }
-  updateCurso(data:TcCurso, id:number){
-    return this.http.put(this.url + 'curso/'+ id, data);
-  }
   getCursosAll(){
     return this.http.get(this.url + 'curso/all');
   }
