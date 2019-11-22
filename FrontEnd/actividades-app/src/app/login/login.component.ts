@@ -41,22 +41,31 @@ export class LoginComponent implements OnInit {
     var route = this.router.parseUrl(this.router.url);
     this.oauth2(route);
   }
-
   oauth2 (user) {
     console.log('oauth2',user.queryParamMap.params)
-    if (user.queryParamMap.params.state) {
-      let params = user.queryParamMap.params;
-      let token = params.state;
-      let tcUser = params.authuser;
-      const loginData = new SessionUser();
-      loginData.tcUser = tcUser;
-      loginData.token = token;
-      this.storageService.setCurrentSession(loginData);
-      sessionStorage.setItem('token', token);
-      this.toastr.success('Acceso correcto');
-      this.router.navigate(['/home']);
+    if (user.queryParamMap.params.code) {
+      this.loginService.loginOauth2(user.queryParamMap.params.code).subscribe (
+        Response => {
+          console.log(Response)
+          let token = Response["id_token"];
+          let tcUser = Response["id_token"];
+          const loginData = new SessionUser();
+          loginData.tcUser = tcUser;
+          loginData.token = token;
+          this.storageService.setCurrentSession(loginData);
+          sessionStorage.setItem('token', token);
+          sessionStorage.setItem('access_token',  Response["access_token"]);
+          this.toastr.success('Acceso correcto');
+          this.router.navigate(['/home']);
+        }, 
+        error => {
+          this.toastr.error('Status: ' + error.error.status + ' Error: ' + error.error.error + ' Message: ' + error.error.message);
+        }
+      );
+      
     } 
   }
+
 
   login() {
     console.log(this.user)
