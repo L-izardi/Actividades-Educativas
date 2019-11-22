@@ -1,0 +1,11 @@
+http://localhost:8081/auth/signup
+
+{
+"name": "Name",
+"email": "email@email.com",
+ "password":"pass",
+"imageUrl": null,
+"emailVerified": false,
+"provider": "local",
+"providerId": null
+}
