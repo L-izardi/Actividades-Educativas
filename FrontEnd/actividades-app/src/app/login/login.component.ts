@@ -36,11 +36,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    sessionStorage.removeItem('token');
-    sessionStorage.clear();
-    var route = this.router.parseUrl(this.router.url);
-    this.oauth2(route);
+    if(this.storageService.isAuthenticated()){
+      this.router.navigate(['/home']);
+    } else {
+      sessionStorage.clear();
+      var route = this.router.parseUrl(this.router.url);
+      this.oauth2(route);
+    }
   }
+  
   oauth2 (user) {
     console.log('oauth2',user.queryParamMap.params)
     if (user.queryParamMap.params.code) {
