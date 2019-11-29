@@ -1,48 +1,51 @@
-<div class="container" style="padding-top:60px;">  
-    <div class="row">  
-      <div class="col-md-6 mx-auto">  
-        <div class="card-group">  
-          <div class="card p-4">  
-            <div class="card-body">  
-              <form name="form" (ngSubmit)="login()" #f="ngForm">   
-                <h1 style="text-align:center">Ingreso</h1>   
-                <div class="input-group mb-3">  
-                  <div class="input-group-prepend">  
-                    <span class="input-group-text"><i class="icon-user"></i></span>  
-                  </div>  
-                  <input type="text" name="email" [(ngModel)]="user.email" class="form-control sty1" placeholder="Email" required>  
-                </div>  
-                <div class="input-group mb-4">  
-                  <div class="input-group-prepend">  
-                    <span class="input-group-text"><i class="icon-lock"></i></span>  
-                  </div>  
-                  <input  type="password" name="password" [(ngModel)]="user.password" class="form-control" placeholder="Contraseña">  
-                </div>  
-                <div>  
-                    <p style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">  
-                      {{errorMessage}}  
-                    </p>  
-                  </div>  
-                <div class="row">  
-                  <div class="col-6">  
-                    <button type="submit" class="btn btn-primary px-4">Aceptar</button>  
-                  </div>  
-                  <div class="col-6 text-right">  
-                    <button type="button" class="btn btn-link px-0">¿Olvidó su contraseña?</button>  
-                  </div>  
-                </div>  
-                <br/>
-                <div class="row justify-content-md-center">
-                  <div class="col-md-auto">
-                    <a class="btn btn-lg btn-block" href="http://localhost:8081/oauth2/authorize/google">
-                      <img height="45px" width="45px" src="IconG.ico" alt="Google" /> Log in with Google
-                    </a>
-                  </div>
+<div class="container" style="padding-top:60px;">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card-group">
+        <div class="card p-4">
+          <div class="card-body">
+            <form name="form" (ngSubmit)="login()" #f="ngForm">
+              <h1 style="text-align:center">Ingreso</h1>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-user"></i></span>
                 </div>
-              </form>  
-            </div>  
-          </div>  
-        </div>  
-      </div>  
-    </div>  
-</div> 
+                <input type="text" name="email" [(ngModel)]="user.email" class="form-control sty1" placeholder="Email"
+                  required>
+              </div>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="icon-lock"></i></span>
+                </div>
+                <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
+                  placeholder="Contraseña">
+              </div>
+              <div>
+                <p style="color:#E92626;font-size:20px;font-weight:normal" Class="success" align="left">
+                  {{errorMessage}}
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <button type="submit" class="btn btn-primary px-4">Aceptar</button>
+                </div>
+                <div class="col-5">
+                  <button type="submit" class="btn btn-primary px-4" (click)="goToSignUp()">Registrarse</button>
+                </div>
+              </div>
+              <br />
+              <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                  <a class="btn btn-lg btn-block"
+                    href="http://localhost:8081/oauth2/authorize/google?redirect_uri=http://localhost:4200/login/">
+                    <img height="45px" width="45px" src="IconG.ico" alt="Google" /> Log in with Google
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
