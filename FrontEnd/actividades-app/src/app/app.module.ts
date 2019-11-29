@@ -15,12 +15,26 @@ import { AuthorizatedGuard } from './guard/authorizated.guard';
 import { StorageService } from './service/storage.service';
 import { DatePipe } from '@angular/common';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
+import { TcCentroComponent } from './catalog/tcCentro/tc-centro/tc-centro.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { TcFacultadComponent } from './catalog/tcFacultad/tc-facultad/tc-facultad.component';
+import { NavbarComponent } from './catalog/template/navbar/navbar.component';
+import { FooterComponent } from './catalog/template/footer/footer.component';
+import { TcCentroAddComponent } from './catalog/tcCentro/tc-centro-add/tc-centro-add.component';
+import { TcCursoComponent } from './catalog/tcCurso/tc-curso/tc-curso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    TcCentroComponent,
+    SignUpComponent,
+    TcFacultadComponent,
+    NavbarComponent,
+    FooterComponent,
+    TcCentroAddComponent,
+    TcCursoComponent
   ],
   imports: [
     BrowserModule,
