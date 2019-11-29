@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark  bg-dark  ">
+  <a class="navbar-brand" routerLink="" (click)="goToHome()">UMG - Desarrollo Web</a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" [ngClass]="{ 'show': navbarOpen }">
+
+    <ul class="navbar-nav ">
+      <li class="nav-item ">
+        <a class="nav-link" (click)="goToHome()" routerLinkActive="active">Home <span
+            class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Centro </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="goToCentro()" routerLinkActive="active">Centros</a>
+          <a class="dropdown-item" (click)="goToCentroAdd()" routerLinkActive="active">Agregar Centro</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Proveedor </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="order" routerLinkActive="active">Pedidos</a>
+          <a class="dropdown-item" routerLink="order/generated" routerLinkActive="active">Generar Pedido</a>
+        </div>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="../login" (click)="logout()" routerLinkActive="active">Cerrar Sesion </a>
+      </li>
+    </ul>
+  </div>
+</nav>
