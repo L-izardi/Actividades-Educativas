@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../service/login.service';
+import { TcUserService } from '../service/tc-user.service';
 import { User } from '../model/user';
 import { ToastrService, Toast } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -10,13 +10,13 @@ import { SessionUser } from '../model/session-user';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [LoginService]
+  providers: [TcUserService]
 })
 export class LoginComponent implements OnInit {
 
   user: any = new User();
   private toastr: ToastrService;
-  private loginService: LoginService;
+  private tcUserService: TcUserService;
   private router: Router;
   private response;
   errorMessage: any;
@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     router: Router,
-    loginService: LoginService,
+    tcUserService: TcUserService,
     toastr: ToastrService,
     storageService: StorageService
   ) { 
     this.router = router;
-    this.loginService = loginService;
+    this.tcUserService = tcUserService;
     this.toastr = toastr;
     this.storageService = storageService;
   }
@@ -46,37 +46,32 @@ export class LoginComponent implements OnInit {
   }
   
   oauth2 (user) {
-    console.log('oauth2',user.queryParamMap.params)
-    if (user.queryParamMap.params.code) {
-      this.loginService.loginOauth2(user.queryParamMap.params.code).subscribe (
-        Response => {
-          console.log(Response)
-          let token = Response["id_token"];
-          let tcUser = Response["id_token"];
-          const loginData = new SessionUser();
-          loginData.tcUser = tcUser;
-          loginData.token = token;
-          this.storageService.setCurrentSession(loginData);
-          sessionStorage.setItem('token', token);
-          sessionStorage.setItem('access_token',  Response["access_token"]);
-          this.toastr.success('Acceso correcto');
-          this.router.navigate(['/home']);
-        }, 
-        error => {
+    if(user.queryParamMap.get('token')!=null){
+      this.tcUserService.loginOauth2(user.queryParamMap.get('token')).subscribe(
+        Response =>{
+          this.response = Response;
+          if (this.response.provider === 'google') {
+            let tcUser = this.response.data;
+            const loginData = new SessionUser();
+            loginData.tcUser = tcUser;
+            loginData.token = user.queryParamMap.get('token');
+            this.storageService.setCurrentSession(loginData);
+            sessionStorage.setItem('token', user.queryParamMap.get('token'));
+            this.toastr.success('Acceso correcto');
+            this.router.navigate(['/home']);
+          }
+        },error => {
           this.toastr.error('Status: ' + error.error.status + ' Error: ' + error.error.error + ' Message: ' + error.error.message);
         }
-      );
-      
-    } 
+      )
+    }
   }
 
 
   login() {
-    console.log(this.user)
-    this.loginService.login(this.user).subscribe (
+    this.tcUserService.login(this.user).subscribe (
       Response => {
         this.response = Response;
-        console.log(this.response);
         if (this.response.status === 'ok') {
           let token = this.response.singleValue;
           let tcUser = this.response.data[0];
@@ -97,4 +92,9 @@ export class LoginComponent implements OnInit {
       }
     );   }
 
+    
+  goToSignUp(){
+    this.router.navigate(['/registro']);
+  }
+  
 }
