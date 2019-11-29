@@ -17,7 +17,7 @@ spring:
             google:
               clientId: 124840980704-cpper58q9r06nud9ctl2kp4iu335cg1u.apps.googleusercontent.com
               clientSecret: pJRB1nhqVhnwwdQpqL3eCXNA
-              redirectUriTemplate: "http://localhost:4200/login"
+              redirectUriTemplate: "http://localhost:8081/oauth2/callback/{registrationId}"
               authorization-grant-type: authorization_code
               scope:
                 - email
