@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class="container" style="padding-top:60px;">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <form name="form" (ngSubmit)="add()" #f="ngForm">
+                            <h2 style="text-align:center">Nuevo Centro</h2>
+                            <div class="input-group mb-3">
+                                <div class="hidden">
+                                    <input type="text" placeholder="Automático" [(ngModel)]="tcCentro.idCentro"
+                                        name="providerId" class="form-control" id="idCentro" readonly="true">
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="nombre" [(ngModel)]="tcCentro.nombre" class="form-control sty1"
+                                    placeholder="Nombre del Centro" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="telefono" [(ngModel)]="tcCentro.telefono"
+                                    class="form-control sty1" placeholder="Telefono" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="correo" [(ngModel)]="tcCentro.correo" class="form-control sty1"
+                                    placeholder="Correo" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="direccion" [(ngModel)]="tcCentro.direccion"
+                                    class="form-control sty1" placeholder="Direccion" required>
+                            </div>
+                            <div class="input-group mb-4">
+                                <select class="form-control sty1" name="select" [(ngModel)]="departamento.idDepto">
+                                    <option [value]="item.idDepto" *ngFor="let item of departamentos">{{item.nomDepto}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary px-4">Aceptar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
