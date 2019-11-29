@@ -20,18 +20,13 @@ export class LoginService {
   }
 
   login(user: User) {
-    console.log(user);
     return this.http.post(this.url + 'auth/login', user);
   }
-  loginOauth2(code){
-    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    return this.http.post("https://oauth2.googleapis.com/token", {
-      "code" : code,
-      "client_id" : "124840980704-cpper58q9r06nud9ctl2kp4iu335cg1u.apps.googleusercontent.com",
-      "client_secret" : "pJRB1nhqVhnwwdQpqL3eCXNA",
-      "redirect_uri" : "http://localhost:4200/login",
-      "grant_type" : "authorization_code"
-      
-    },{headers:headers});
+  
+  userMe(token: String ){
+    let headers = new HttpHeaders();
+    headers=headers.set('Content-Type','application/json; charset=utf-8');
+    headers=headers.set('Authorization','Bearer '+token);
+    return this.http.get(this.url+'user/me', {headers:headers});
   }
 }
