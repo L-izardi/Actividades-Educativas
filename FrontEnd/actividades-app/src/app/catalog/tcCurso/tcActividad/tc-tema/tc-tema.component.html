@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<br>
+<h3 style="text-align:center">Actividades!</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>estado</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of temas">
+            <td>{{ t.idTema }}</td>
+            <td>{{ t.nombre }}</td>
+            <td>{{ t.estado }}</td>
+            <td><button class="btn btn-sm btn-danger" (click)="detalle(t)">Detalle</button></td>
+        </tr>
+    </tbody>
+</table>
