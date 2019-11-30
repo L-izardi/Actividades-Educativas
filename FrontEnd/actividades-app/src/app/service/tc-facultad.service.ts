@@ -18,7 +18,7 @@ export class TcFacultadService {
    }
 
   addFacultad(data:TcFacultad){
-    return this.http.post(this.url + 'facultad/', data);
+    return this.http.post(this.url + 'facultad/add', data);
   }
   updateFacultad(data:TcFacultad, id:number){
     return this.http.put(this.url +'facultad/'+ id, data);
