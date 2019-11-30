@@ -1,1 +1,86 @@
-<p>tc-curso works!</p>
+<app-navbar></app-navbar>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <label for="selectDepartamento">Departamento</label>
+            <select class="form-control sty1" name="selectDepartamento" [(ngModel)]="departamento.idDepto"
+                (change)="getSelectDepartamento()">
+                <option value="A">Selecciona Departamento </option>
+                <option [value]="item.idDepto" *ngFor="let item of departamentos" (click)="handleChangeDep()">
+                    {{item.nomDepto}}
+                </option>
+            </select>
+        </div>
+
+        <div *ngIf="departamento.idDepto">
+            <div class="col-sm">
+                <label for="selectCentro">Centro</label>
+                <select class="form-control sty1" name="selectCentro" [(ngModel)]="centro.idCentro"
+                    (change)="getSelectCentro()">
+                    <option value="A">Selecciona Centro </option>
+                    <option [value]="item.idCentro" *ngFor="let item of centros">{{item.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="centro.idCentro">
+            <div class="col-sm">
+                <label for="selectFacultad">Facultad</label>
+                <select class="form-control sty1" name="selectFacultad" [(ngModel)]="facultad.idFacultad"
+                    (change)="getCursos()">
+                    <option value="A">Selecciona Facultad </option>
+                    <option [value]="item.idFacultad" *ngFor="let item of facultades">{{item.nombre}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div *ngIf="facultad.idFacultad">
+            <div class="col-sm">
+                <label for="selectCurso">Cursos</label>
+                <select class="form-control sty1" name="selectCatedratico" [(ngModel)]="curso.idCurso">
+                    <option value="A">Seleccione Curso </option>
+                    <option [value]="item.idCurso" *ngFor="let item of cursos">{{item.nomCurso}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm">
+            <label for="selectCatedratico">Catedratico</label>
+            <select class="form-control sty1" name="selectCatedratico" [(ngModel)]="catedratico.idCatedratico">
+                <option value="A">Seleccione Catedratico </option>
+                <option [value]="item.idCatedratico" *ngFor="let item of catedraticos">{{item.nombre}}
+                </option>
+            </select>
+        </div>
+        <div *ngIf="facultad.idFacultad" class="col-sm">
+            <label for="buscar"> Buscar </label>
+            <a (click)="getHeader()" name="buscar" class="btn btn-primary"> Buscar </a>
+        </div>
+    </div>
+</div>
+
+<br>
+<h3 style="text-align:center">Cursos!</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre</td>
+            <td>Ciclo</td>
+            <td>Sección</td>
+            <td>Horario</td>
+            <td>Opciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cursoHead of headerFilter">
+            <td>{{ cursoHead.idCorrelativo }}</td>
+            <td>{{ cursoHead.tc_curso.nomCurso }}</td>
+            <td>{{ cursoHead.tc_curso.tc_ciclo.ciclo1 }}</td>
+            <td>{{ cursoHead.seccion }}</td>
+            <td>{{ cursoHead.horario }}</td>
+            <td><button class="btn btn-sm btn-danger" (click)="actividades(cursoHead)">Actividades</button></td>
+        </tr>
+    </tbody>
+</table>
