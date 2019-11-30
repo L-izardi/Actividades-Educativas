@@ -4,6 +4,6 @@ export class TcFacultad {
     
     public idFacultad:number;
     public nombre:String;
-    public idCentro:TcCentro;
+    public tc_centro:TcCentro;
     
 }
