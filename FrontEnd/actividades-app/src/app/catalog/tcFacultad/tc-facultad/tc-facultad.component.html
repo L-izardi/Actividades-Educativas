@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<br>
+<h3 style="text-align:center">Facultad!</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre</td>
+            <td>Centro</td>
+            <td>Departamento</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let facultad of data">
+            <td>{{ facultad.idFacultad }}</td>
+            <td>{{ facultad.nombre }}</td>
+            <td>{{ facultad.tc_centro.nombre }}</td>
+            <td>{{ facultad.tc_centro.tc_departamento.nomDepto }}</td>
+        </tr>
+    </tbody>
+</table>
