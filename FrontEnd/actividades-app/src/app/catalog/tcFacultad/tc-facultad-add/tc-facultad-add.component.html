@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container" style="padding-top:60px;">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card-group">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <form name="form" (ngSubmit)="add()" #f="ngForm">
+                            <h2 style="text-align:center">Nueva Facultad</h2>
+                            <div class="input-group mb-3">
+                                <div class="hidden">
+                                    <input type="text" placeholder="Automático" [(ngModel)]="tcFacultad.idFacultad"
+                                        name="idFacultad" class="form-control" id="idCentro" readonly="true">
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" name="nombre" [(ngModel)]="tcFacultad.nombre" class="form-control sty1"
+                                    placeholder="Nombre del Centro" required>
+                            </div>
+                            <div class="input-group mb-4">
+                                <select class="form-control sty1" name="select" [(ngModel)]="centro.idCentro">
+                                    <option [value]="item.idCentro" *ngFor="let item of centros">{{item.nombre}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary px-4">Aceptar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
