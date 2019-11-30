@@ -1,10 +1,10 @@
 import { TcTema } from './tc-tema';
 export class TcDetalle {
     
-    public idFacultad:number;
-    public idTema:TcTema;
+    public idCorrelativo: number;
+    public tcTema:TcTema;
     public mes:number;
-    public subTema:String;
+    public subtema:String;
     public fechaDesarrollar:Date;
     public fechaRevision:Date;
     public porcAvanceSemanal:number;
