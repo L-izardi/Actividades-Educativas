@@ -1,0 +1,117 @@
+<app-navbar></app-navbar>
+<br>
+<h3 style="text-align:center">Detalle de la Activida!</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of temas">
+            <td>{{ d.idTema }}</td>
+            <td>{{ d.nombre }}</td>
+            <td>{{ d.estado }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>SubTema</th>
+            <th>Mes</th>
+            <th>Fecha a Desarrollar</th>
+            <th>Fecha de Revision</th>
+            <th>Porcentaje de avance Semanal</th>
+            <th>Porcentaje de avance Mensual</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of detalle">
+            <td>{{ d.idCorrelativo }}</td>
+            <td>{{ d.subtema }}</td>
+            <td>{{ d.mes }}</td>
+            <td>{{ d.fechaDesarrollar }}</td>
+            <td>{{ d.fechaRevision }}</td>
+            <td><meter min="0" max="100" low="25" high="75" optimum="100" value="{{ d.porcAvanceSemanal }}"></meter>
+            </td>
+            <td><meter min="0" max="100" low="25" high="75" optimum="100" value="{{ d.porcAvanceMensual }}"></meter>
+            </td>
+            <td>{{ d.estado }}</td>
+            <td><button class="btn btn-sm btn-danger" (click)="actualizarAvance(d,content)">Editar</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Actualizar Avance</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="generalForm">
+            <div class="hidden">
+                <input type="text" formControlName="idCorrelativo" placeholder="Automático" name="idCorrelativo"
+                    class="form-control" id="idCorrelativo" readonly="true">
+            </div>
+            <div class="input-group">
+                <label for="subtema">Nombre</label>
+                <input type="text" formControlName="subtema" placeholder="Nombre del Subtema" name="subtema"
+                    class="form-control" id="subtema">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="mes">Mes</label>
+                <input type="text" formControlName="mes" placeholder="Mes" name="mes" class="form-control" id="mes">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="fechaDesarrollar">fecha a Desarrollar</label>
+                <input id="fechaDesarrollar" formControlName="fechaDesarrollar" class="form-control"
+                    placeholder="yyyy-mm-dd" name="fechaDesarrollar">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                </div>
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="fechaRevision">fecha Revision</label>
+                <input id="fechaRevision" formControlName="fechaRevision" class="form-control" placeholder="yyyy-mm-dd"
+                    name="fechaRevision">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                </div>
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="porcAvanceSemanal">Avance Semanal</label>
+                <input type="text" formControlName="porcAvanceSemanal" placeholder="porc Avance Semanal"
+                    name="porcAvanceSemanal" class="form-control" id="porcAvanceSemanal">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="porcAvanceMensual">Avance Mensual</label>
+                <input type="text" formControlName="porcAvanceMensual" placeholder="porc Avance Mensual"
+                    name="porcAvanceMensual" class="form-control" id="porcAvanceMensual">
+            </div>
+            <br>
+            <div class="input-group">
+                    <label for="estado">Estado</label>
+                    <input type="text" formControlName="estado" placeholder="Estado" name="estado"
+                        class="form-control" id="estado">
+                </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+    </div>
+</ng-template>
