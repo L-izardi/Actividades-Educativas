@@ -32,6 +32,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  goToCurso(){
+    this.router.navigate(['/cursos']);
+  }
   goToCentro(){
     this.router.navigate(['/centro']);
   }
@@ -42,5 +45,8 @@ export class NavbarComponent implements OnInit {
 
   goToFacultad(){
     this.router.navigate(['/facultad']);
+  }
+  goToFacultadAdd(){
+    this.router.navigate(['/facultad/add']);
   }
 }

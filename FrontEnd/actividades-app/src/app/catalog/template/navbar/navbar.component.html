@@ -13,6 +13,9 @@
         <a class="nav-link" (click)="goToHome()" routerLinkActive="active">Home <span
             class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item ">
+        <a class="nav-link" (click)="goToCurso()" routerLinkActive="active">Cursos</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Centro </a>
         <div class="dropdown-menu">
@@ -21,10 +24,10 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Proveedor </a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Facultad </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" routerLink="order" routerLinkActive="active">Pedidos</a>
-          <a class="dropdown-item" routerLink="order/generated" routerLinkActive="active">Generar Pedido</a>
+          <a class="dropdown-item" (click)="goToFacultad()" routerLinkActive="active">Facultades</a>
+          <a class="dropdown-item" (click)="goToFacultadAdd()" routerLinkActive="active">Agregar Facultad</a>
         </div>
       </li>
       <li class="nav-item ">
