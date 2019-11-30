@@ -22,6 +22,9 @@ import { NavbarComponent } from './catalog/template/navbar/navbar.component';
 import { FooterComponent } from './catalog/template/footer/footer.component';
 import { TcCentroAddComponent } from './catalog/tcCentro/tc-centro-add/tc-centro-add.component';
 import { TcCursoComponent } from './catalog/tcCurso/tc-curso/tc-curso.component';
+import { TcFacultadAddComponent } from './catalog/tcFacultad/tc-facultad-add/tc-facultad-add.component';
+import { TcTemaComponent } from './catalog/tcCurso/tcActividad/tc-tema/tc-tema.component';
+import { TcDetalleComponent } from './catalog/tcCurso/tcActividad/tc-detalle/tc-detalle.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { TcCursoComponent } from './catalog/tcCurso/tc-curso/tc-curso.component'
     NavbarComponent,
     FooterComponent,
     TcCentroAddComponent,
-    TcCursoComponent
+    TcCursoComponent,
+    TcFacultadAddComponent,
+    TcTemaComponent,
+    TcDetalleComponent
   ],
   imports: [
     BrowserModule,
